@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+ <hibernate-mapping>
+    <class name="com.xiaohe.shopping.domain.warehouse"  table="warehouse">
+       <!-- 仓库ID -->
+       	<id name="warehouseId" column="warehouseId">
+           <generator class="native"></generator>        
+        </id>
+        <!-- 仓库编号 -->
+        <property name="wh_num" column="wh_num" length="20"></property>
+       <!-- 仓库地点 -->
+        <property name="wh_place" column="wh_place" length="20"></property>
+       <!-- 仓库名 -->
+       <property name="wh_name" column="wh_name" length="20"></property>
+        <!-- 仓库容量 -->
+         <property name="wh_size" column="wh_size" length="100"></property>
+         <!-- 仓库进货 -->
+       <property name="wh_input" column="wh_input" length="50"></property>
+       <!-- 仓库剩余量 -->
+       <property name="wh_surplus" column="wh_surplus" length="20"></property>
+       <!-- 仓库出货 -->
+       <property name="wh_output" column="wh_output" length="50"></property>
+          <property name="warehouseadministratorId" column="warehouseadministratorId" length="10"></property> 
+ 
+ 		 <!-- 关联关系映射 -->
+             <many-to-one name=" warehouseadministrator" class="com.xiaohe.shopping.domain.warehouseadministrator" column="warehouseadministratorId">
+             </many-to-one>
+   </class>
+</hibernate-mapping>
