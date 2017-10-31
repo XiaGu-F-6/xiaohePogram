@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 指定一个扫描器 -->
+	<context:component-scan base-package="com.xiaohe.controller"/>
+	
+	<!-- 处理器映射器 -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+	<!-- 适配器解析器 -->	
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<!-- <property name="webBindingInitializer" ref="myBinder"/> -->
+	</bean>
+	<!-- 视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- <property name="prefix" value="/jsp/"/>
+		<property name="suffix" value=".jsp"/> -->
+	</bean>	
+	
+	
+	<!-- 注册一下转换器 -->
+	<!-- <bean id="myConverter" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="com.hk.controller.converter.DateConverter"/>
+				<bean class="com.hk.controller.converter.StringConvertor"/>
+			</list>
+		</property>
+	</bean> -->
+	
+	<!-- <bean id="myBinder" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+		<property name="conversionService" ref="myConverter"/>
+	</bean> -->
+	
+	
+	
+	
+	
+</beans>

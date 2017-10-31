@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- c3p0连接池的使用 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/businessystem"/>
+		<property name="user" value="root"/>
+		<property name="password" value="wang"/>
+	</bean>
+	
+	<!-- mybatis的运行过程
+		 sqlSessionFactory sqlSession  Mapper接口实现类
+		
+		现在由spring去创建mapper接口的具体实现类
+	 -->
+	<!--sqlSessionFactory 对象的创建  -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:SqlMapConfig.xml"/>
+	</bean>
+	
+	<!-- Mapper接口的实现类的创建
+		org.mybatis.spring.mapper.MapperScannerConfigurer 专门用来扫描制定的包路径下的
+		mapper接口，自动的生成对应接口的mapper实现类
+		
+		把每一个接口的实现类都实例化，然后每一个类的id值就是类名，首字母小写
+	 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.xiaohe.mapper"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
+
+
+	
+	
+</beans>
